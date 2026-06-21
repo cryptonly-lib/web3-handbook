@@ -1,66 +1,109 @@
-# 95% of the links you might need as a Web3 (Crypto) Developer or product owner
+# The Web3 developer link stack
 
-> **Disclaimer: All information (tools, links, articles, text, images, etc.) is provided for educational purposes only! All information is based on data from public sources. You are solely responsible for your actions, not the authors!**
+> **Note:** This is an educational resource, not financial, legal, or security advice. Always verify tooling, pricing, limits, and compliance requirements before you put anything in production.
+
+This repository is a practical Web3 handbook from the Cryptonly team. It started as a messy internal bookmark folder: RPC providers we compare, docs we send to new engineers, faucets we forget until testnet day, wallets we test, compliance tools we keep an eye on, and explorers we open when something looks odd.
+
+It is not meant to be a “top 100 crypto tools” SEO dump. It is a practical starting stack for developers and product owners building with crypto payments, wallets, smart contracts, or on-chain data. Some links are tools we use, some are tools we are evaluating, and some are simply useful defaults when you need to orient yourself quickly.
 
 ---
 
-## 1. Blockchain Node Providers
-Access on-chain data without running your own infrastructure.
+## What's inside
+
+- [How to use this repository](#how-to-use-this-repository)
+- [1. Blockchain node providers](#1-blockchain-node-providers)
+- [2. AML, KYT, KYC, and compliance services](#2-aml-kyt-kyc-and-compliance-services)
+- [3. Developer documentation and SDKs](#3-developer-documentation-and-sdks)
+- [4. Testnet faucets](#4-testnet-faucets)
+- [5. Smart contract development frameworks](#5-smart-contract-development-frameworks)
+- [6. Block explorers and analytics](#6-block-explorers-and-analytics)
+- [7. Wallet and identity infrastructure](#7-wallet-and-identity-infrastructure)
+- [8. Security and auditing tools](#8-security-and-auditing-tools)
+- [9. Price oracles and data feeds](#9-price-oracles-and-data-feeds)
+- [Bonus: on-chain development kits for non-EVM ecosystems](#bonus-on-chain-development-kits-for-non-evm-ecosystems)
+- [Contributing](#contributing)
+
+---
+
+## How to use this repository
+
+If you are building a product, do not try to adopt everything here. Start with the category that blocks your next decision:
+
+- Need balances, transactions, or contract reads? Start with node providers and explorers.
+- Need to launch a checkout, wallet flow, or dApp? Read the SDK and wallet sections.
+- Touching customer funds? Look at compliance and security before you ship.
+- Testing a prototype? Grab faucets, use a testnet, and keep mainnet keys far away from experiments.
+
+Our bias is simple: prefer boring infrastructure for production and fun tools for prototypes.
+
+---
+
+## 1. Blockchain node providers
+
+Most teams should not run their own blockchain infrastructure on day one. A managed RPC provider lets you read balances, submit transactions, listen for events, and build product flows without babysitting nodes.
 
 ### Multi-chain / EVM
-- **[Alchemy](https://www.alchemy.com/)** – Generous free tier (300M compute units/month).
-- **[Infura](https://infura.io/)** – The veteran; solid Ethereum/IPFS access, 100K requests/day free. 
-- **[QuickNode](https://www.quicknode.com/)** – Pay-as-you-go, worldwide edge nodes, supports 20+ chains including Bitcoin, Solana.
-- **[Chainstack](https://chainstack.com/)** – Multi-cloud, free developer plan with 3M requests/month.
-- **[GetBlock](https://getblock.io/)** – Affordable shared nodes, 40K requests/day free tier; supports Bitcoin, Tron, Solana.
-- **[ANKR](https://www.ankr.com/)** – Decentralized RPC service, generous free tier; supports Bitcoin, BNB Chain, Polygon, etc.
+
+- **[Alchemy](https://www.alchemy.com/)** - A strong default for EVM teams, especially if you want dashboards, enhanced APIs, and good developer docs.
+- **[Infura](https://infura.io/)** - Still one of the standard Ethereum/IPFS choices. Useful when you want something established and widely documented.
+- **[QuickNode](https://www.quicknode.com/)** - Good multi-chain coverage, including Bitcoin and Solana, with add-ons when a plain RPC endpoint is not enough.
+- **[Chainstack](https://chainstack.com/)** - Worth comparing if you care about cloud/provider flexibility and predictable infrastructure setup.
+- **[GetBlock](https://getblock.io/)** - Broad chain support with shared and dedicated node options.
+- **[ANKR](https://www.ankr.com/)** - Useful when you want a decentralized RPC angle or broad EVM coverage.
 
 ### Bitcoin / Lightning
+
 - **[QuickNode Bitcoin](https://www.quicknode.com/chains/btc)** – Bitcoin RPC with full archival options.
 - **[BlockCypher](https://www.blockcypher.com/)** – Bitcoin, Litecoin, Doge; simple REST API.
-- **[Mempool.space API](https://mempool.space/docs/api)** – Free, excellent for fee estimation and mempool data.
-- **[LND (Lightning Network Daemon)](https://lightning.engineering/)** – If you need your own Lightning node.
-- **[Voltage](https://voltage.cloud/)** – Managed Lightning nodes, easy to spin up.
+- **[Mempool.space API](https://mempool.space/docs/api)** – Great for fee estimation, mempool data, and transaction inspection.
+- **[LND (Lightning Network Daemon)](https://lightning.engineering/)** – The serious route if you need to run your own Lightning node.
+- **[Voltage](https://voltage.cloud/)** – Managed Lightning nodes when you want to avoid the operational burden early.
 
 ### Tron
-- **[TronGrid](https://www.trongrid.io/)** – Official Tron node provider, generous free tier. (we're evaluating this)
 
-**Pro tip:** Most node providers offer a free tier sufficient for development and small-scale apps.
+- **[TronGrid](https://www.trongrid.io/)** – Official Tron node provider. We are evaluating it because Tron is still hard to ignore for stablecoin payment flows.
 
----
-
-## 2. AML / KYC & Compliance Services
-If you handle user funds, compliance is not optional. Here's what's available and indicative pricing.
-
-- **[Chainalysis](https://www.chainalysis.com/)** – The market leader for big guys. Enterprise pricing (typically $20K+/year), includes KYT and many on-chain investigation tools.
-- **[OnChainRisk](https://onchainrisk.io/)** – Probably the best solution for smaller projects. API accessible for as low as $49/month.
-- **[CipherTrace (Mastercard)](https://ciphertrace.com/)** – Focuses on traveler rule compliance and VASP risk assessment.
-- **[Scorechain](https://www.scorechain.com/)** – EU-based, offers pay-per-use and monthly plans starting from ~€29/month for light screening. Supports Bitcoin, Ethereum, Litecoin, and stablecoins.
-- **[Sanction Scanner](https://sanctionscanner.com/)** – Simple API for sanction and PEP screening, plans from $49/month.
-- **[Coinfirm](https://www.coinfirm.com/)** – Covers 1500+ assets including Bitcoin, Tron, and DeFi tokens.
-
-**Note:** Many offer sandbox environments. For early-stage projects, start with Scorechain's basic plan or OnChainRisk's entry tier.
+**Cryptonly note:** RPC providers look interchangeable until you depend on them for payment status. Test rate limits, latency, retries, and historical data access before the provider becomes part of your checkout flow.
 
 ---
 
-## 3. Developer Documentation & SDKs
-Bookmark these; you'll be back often.
+## 2. AML, KYT, KYC, and compliance services
+
+If your product touches customer funds, compliance is not optional. The right setup depends on your jurisdiction, asset support, risk appetite, and whether you need wallet screening, transaction monitoring, sanctions checks, or full onboarding.
+
+- **[Chainalysis](https://www.chainalysis.com/)** - Enterprise-grade KYT, investigations, and risk tooling. Often the name larger teams start with.
+- **[OnChainRisk](https://onchainrisk.io/)** - Interesting for smaller projects that still need API-based wallet or transaction risk checks.
+- **[CipherTrace (Mastercard)](https://ciphertrace.com/)** - Focuses on VASP risk, traveler rule workflows, and institutional compliance needs.
+- **[Scorechain](https://www.scorechain.com/)** - EU-based platform with screening and analytics across major assets.
+- **[Sanction Scanner](https://sanctionscanner.com/)** - Useful if you need sanctions, PEP, and onboarding checks alongside crypto-specific tooling.
+- **[Coinfirm](https://www.coinfirm.com/)** - Broad asset coverage, including Bitcoin, Tron, and DeFi-related risk signals.
+
+**Watch out:** Do not choose a compliance provider from a pricing page alone. Ask what chains they support, how they score stablecoin transfers, what evidence you can export, and how false positives are handled.
+
+---
+
+## 3. Developer documentation and SDKs
+
+Good docs save more time than clever abstractions. These are the references we would rather have open before guessing from an old Stack Overflow answer.
 
 ### Ethereum / EVM
+
 - **[Ethereum.org Developers Portal](https://ethereum.org/en/developers/)** – The canonical starting point.
-- **[Ethers.js](https://docs.ethers.org/)** – The go-to JavaScript library for EVM interactions.
-- **[Web3.js](https://web3js.readthedocs.io/)** – Still widely used, comprehensive.
-- **[Viem](https://viem.sh/)** – Modern TypeScript interface with great developer experience.
+- **[Ethers.js](https://docs.ethers.org/)** – The long-running JavaScript library many EVM projects still rely on.
+- **[Web3.js](https://web3js.readthedocs.io/)** – Older, still common, and useful when maintaining existing integrations.
+- **[Viem](https://viem.sh/)** – A modern TypeScript-first interface that is pleasant for new EVM codebases.
 - **[Solidity Documentation](https://docs.soliditylang.org/)** – Smart contract language reference.
 
 ### Bitcoin
+
 - **[Bitcoin Developer Guide](https://developer.bitcoin.org/)** – Core documentation.
 - **[Learn Me a Bitcoin](https://learnmeabitcoin.com/)** – Excellent conceptual and code walkthroughs.
 - **[BitcoinJS Lib](https://github.com/bitcoinjs/bitcoinjs-lib)** – JavaScript library for Bitcoin transactions.
 - **[BDK (Bitcoin Dev Kit)](https://bitcoindevkit.org/)** – Rust & Swift library for wallet building.
-- **[Taproot Assets](https://docs.lightning.engineering/)** – For issuing assets on Bitcoin (used with LND).
+- **[Taproot Assets](https://docs.lightning.engineering/)** – For teams exploring asset issuance on Bitcoin through the Lightning ecosystem.
 
 ### Tron
+
 - **[Tron Developer Hub](https://developers.tron.network/)** – Official docs, APIs, and tutorials.
 - **[TronWeb](https://tronweb.network/)** – JavaScript library similar to Web3.js for Tron.
 - **[TronBox](https://github.com/tronprotocol/tron-box)** – Tron's smart contract development framework.
@@ -72,8 +115,9 @@ Bookmark these; you'll be back often.
 
 ---
 
-## 4. Testnet Faucets
-Free test tokens to mimic real transactions.
+## 4. Testnet faucets
+
+Faucets are boring until you need them five minutes before a demo. Keep a few options bookmarked because limits, outages, and account requirements change often.
 
 ### Ethereum & EVM
 - **[Paradigm Faucet](https://faucet.paradigm.xyz/)** – Multi-chain (Sepolia, Holesky, Optimism, etc.).
@@ -90,25 +134,30 @@ Free test tokens to mimic real transactions.
 - **[Shasta Faucet (official)](https://www.trongrid.io/shasta/#request)** – Tron's Shasta testnet faucet.
 - **[Tronscan Faucet](https://www.tronscan.org/)** – Test TRX on Shasta.
 
-### Others
+### Other chains
+
 - **[Stakely Faucet](https://stakely.io/en/faucet)** – Covers Bitcoin, Cosmos, Solana, and many more.
 - **[Bware Labs Faucet](https://bwarelabs.com/faucets)** – Multi-chain including Avalanche, Fantom, etc.
 
+**Small habit that helps:** Write down which testnet, asset, and faucet you used in the issue or pull request. Future you will thank past you when a test address looks unfamiliar.
+
 ---
 
-## 5. Smart Contract Development Frameworks
-Streamline compiling, testing, and deployment.
+## 5. Smart contract development frameworks
+
+If you are writing contracts, your framework should make testing and deployment repeatable. If it only helps you compile, it is not doing enough.
 
 - **[Hardhat](https://hardhat.org/)** – Most popular EVM environment; great plugin ecosystem.
-- **[Foundry](https://book.getfoundry.sh/)** – Blazing fast, Solidity-native. (used by Cryptonly for some internal tests)
+- **[Foundry](https://book.getfoundry.sh/)** – Fast, Solidity-native, and great for test-heavy workflows. We use it for some internal contract testing.
 - **[Remix IDE](https://remix.ethereum.org/)** – Browser-based, perfect for quick prototyping.
 - **[Anchor](https://www.anchor-lang.com/)** – Solana's framework; if you're outside EVM.
 - **[TronBox](https://github.com/tronprotocol/tron-box)** – Tron development and testing.
 
 ---
 
-## 6. Block Explorers & Analytics
-Inspect transactions, contracts, and network activity.
+## 6. Block explorers and analytics
+
+Explorers are your first debugging UI. When a payment, transfer, contract call, or balance looks wrong, this is where you check whether the chain agrees with your backend.
 
 ### Ethereum & EVM
 - **[Etherscan](https://etherscan.io/)** – Essential.
@@ -123,14 +172,16 @@ Inspect transactions, contracts, and network activity.
 - **[Tronscan](https://tronscan.org/)** – Official Tron explorer.
 
 ### Cross-chain analytics
-- **[Dune Analytics](https://dune.com/)** – Community dashboards (EVM mostly).
-- **[Zapper](https://zapper.xyz/)** / **[Zerion](https://zerion.io/)** – Human-readable portfolio views.
-- **[Nansen](https://www.nansen.ai/)** – Wallet labeling, but mostly EVM.
+
+- **[Dune Analytics](https://dune.com/)** – Community dashboards and SQL-based analysis, mostly around EVM ecosystems.
+- **[Zapper](https://zapper.xyz/)** / **[Zerion](https://zerion.io/)** – Human-readable portfolio and wallet views.
+- **[Nansen](https://www.nansen.ai/)** – Wallet labels and analytics, especially useful for EVM research.
 
 ---
 
-## 7. Wallet & Identity Infrastructure
-Connect your dApp to users' wallets with ease.
+## 7. Wallet and identity infrastructure
+
+Wallet connection is not just a button. It affects onboarding, support, recovery, fraud handling, and whether non-crypto-native users can complete the flow.
 
 ### EVM
 - **[WalletConnect](https://walletconnect.com/)** – Universal bridge for mobile wallets.
@@ -149,31 +200,38 @@ Connect your dApp to users' wallets with ease.
 
 ---
 
-## 8. Security & Auditing Tools
-Make your smart contracts and code safer.
+## 8. Security and auditing tools
+
+Security tooling is not a substitute for review, but it catches mistakes humans miss and forces teams to write down assumptions.
 
 - **[OpenZeppelin Contracts](https://www.openzeppelin.com/contracts/)** – Standard-compliant EVM contract libraries.
 - **[Slither](https://github.com/crytic/slither)** – Static analysis for Solidity.
 - **[Echidna](https://github.com/crytic/echidna)** – Fuzzing for EVM smart contracts.
 - **[Tenderly](https://tenderly.co/)** – Debugging, monitoring, simulation; EVM.
 - **[Immunefi](https://immunefi.com/)** – Bug bounty platform for all major ecosystems.
-- **For Bitcoin scripts:** Manual review is key; tools like **[Minsc](https://min.sc/)** can help visualize.
+- **For Bitcoin scripts:** Manual review is key; tools like **[Minsc](https://min.sc/)** can help visualize script behavior.
 - **For Tron:** **[TronEye](https://troneye.com/)** for basic contract verification.
+
+**Production rule:** If a contract can move funds, it deserves tests, review, monitoring, and a rollback or pause story. Tools help, but process matters more.
 
 ---
 
-## 9. Price Oracles & Data Feeds
-Trustworthy off-chain data for your contracts.
+## 9. Price oracles and data feeds
+
+Any product that prices assets, triggers contract logic, or calculates payment amounts from market data needs to be careful about where that data comes from.
 
 - **[Chainlink Data Feeds](https://docs.chain.link/data-feeds)** – Industry standard, available on 20+ chains (EVM).
 - **[Pyth Network](https://pyth.network/)** – High-frequency financial data, popular on Solana, Sui, and also EVM.
 - **[RedStone](https://redstone.finance/)** – Modular oracles, gas-efficient.
 - **[API3](https://api3.org/)** – First-party oracles, DAO-governed.
-- **Bitcoin/Tron:** For native oracles, you'll likely use bridging services or multi-chain oracle networks; Chainlink and Pyth have limited support. Check official docs.
+- **Bitcoin/Tron:** Native oracle options are more limited. You will likely use bridging services, multi-chain oracle networks, or backend-side pricing depending on the product.
 
 ---
 
-## Bonus: On-Chain Development Kits (for non-EVM)
+## Bonus: on-chain development kits for non-EVM ecosystems
+
+Not every crypto product is EVM-first. If your users or assets live elsewhere, start with the native ecosystem instead of forcing an Ethereum mental model onto every chain.
+
 - **[Bitcoin Dev Kit (BDK)](https://bitcoindevkit.org/)** – Rust/Swift for wallet apps.
 - **[Tron Developer Suite](https://developers.tron.network/)** - TronWeb + TronGrid.
 - **[Solana](https://docs.solana.com/)**
@@ -185,17 +243,18 @@ Trustworthy off-chain data for your contracts.
 
 ---
 
-That's the toolbox. It's not an exhaustive list - there are amazing niche tools for each category — but this set will cover 95% of what a web3 developer needs to ship a working product, whether on Ethereum, Bitcoin, Tron, or the wider multi-chain world. We keep this page updated regularly. If a link you love is missing, let us know via [our website](https://cryptonly.net) and we'll add it.
-
-*Curated with care by the Cryptonly team. We build payment tools for the same web3 you're developing on.*
-
----
-
 ## Contributing
 
-This list is a community resource, and we welcome contributions from developers and product owners across the web3 space. If you've spotted a broken link, want to suggest a tool we should add, or have an idea to improve this page:
+This README is the canonical version of the Web3 handbook. We keep it updated as we discover new tools, retire old ones, and hear from developers building real things.
 
-- Open an **issue** or a **pull request** in this GitHub repo
-- Reach out directly on the [Cryptonly website](https://cryptonly.net)
+Repository: **[github.com/cryptonly-lib/web3-handbook](https://github.com/cryptonly-lib/web3-handbook)**
 
-Let's keep this reference useful for the next generation of web3 builders.
+- Open an issue if a link is broken, outdated, or misleading.
+- Open a pull request if you want to add a tool, improve a description, or reorganize a section.
+- Include a short reason for every suggested tool so the list stays curated instead of becoming a dump.
+
+## About Cryptonly
+
+Curated with care by the Cryptonly team. We build payment tools for the same web3 you are developing on.
+
+Questions or suggestions? Visit [cryptonly.net](https://cryptonly.net).
