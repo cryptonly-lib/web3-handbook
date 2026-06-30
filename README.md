@@ -131,8 +131,7 @@ Faucets are boring until you need them five minutes before a demo. Keep a few op
 - **[Mempool.space Testnet Faucet](https://mempool.space/testnet/faucet)** – Convenient, integrated with explorer.
 
 ### Tron
-- **[Shasta Faucet (official)](https://www.trongrid.io/shasta/#request)** – Tron's Shasta testnet faucet.
-- **[Tronscan Faucet](https://www.tronscan.org/)** – Test TRX on Shasta.
+- **[Tron Faucet](https://t.me/TronOfficialDevelopersGroupEn)** – Official Tron Telegram group. Shasta and nile USDT/TRX faucet.
 
 ### Other chains
 
